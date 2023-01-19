@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  webserve:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    tty: yes
+    ports:
+      - "443:443"
+    volumes:
+      - ./nginx/conf_file:/etc/nginx/sites-available
+    container_name: my_nginx
+    depends_on :
+      - word
+  word:
+    build:
+      context: ./wordpress
+      dockerfile: Dockerfile
+    tty: yes
+    container_name: my_word_press
