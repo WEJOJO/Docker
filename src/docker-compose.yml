@@ -9,7 +9,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./nginx/conf_file:/etc/nginx/sites-available
+      - ./nginx/test_ing:/etc/nginx/nginx.conf
     container_name: my_nginx
     depends_on :
       - word
@@ -19,3 +19,22 @@ services:
       dockerfile: Dockerfile
     tty: yes
     container_name: my_word_press
+    depends_on:
+      - db
+    environment:
+      - WORDPRESS_DB_HOST= "db:3306"
+      - WORDPRESS_DB_USER= "wordpress"
+      - WORDPRESS_DB_PASSWORD= "wordpress"
+      - WORDPRESS_DB_NAME= "wordpress"
+    restart: always
+  db:
+    image: mariadb
+    tty: yes
+    container_name: my_db
+    environment:
+      - MYSQL_ROOT_PASSWORD= "somewordpress"
+      - MYSQL_DATABASE= "wordpress"
+      - MYSQL_USER= "wordpress"
+      - MYSQL_PASSWORD= "wordpress"
+    restart: always
+
