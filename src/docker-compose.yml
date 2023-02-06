@@ -1,5 +1,14 @@
 version: "3"
 
+volumes:
+  my_wp:
+    driver: local
+    name: my_wp
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/wordpress_data
+
 services:
   webserve:
     build:
@@ -9,7 +18,8 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./nginx/test_ing:/etc/nginx/nginx.conf
+      - ./nginx/test_ingd:/etc/nginx/sites-available
+      - my_wp:/var/www/html
     container_name: my_nginx
     depends_on :
       - word
@@ -19,6 +29,9 @@ services:
       dockerfile: Dockerfile
     tty: yes
     container_name: my_word_press
+    volumes:
+      - my_wp:/var/www/html
+      - ./wordpress/d_conf:/etc/php/7.3/fpm/pool.d
     depends_on:
       - db
     environment:
