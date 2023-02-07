@@ -11,5 +11,8 @@ mkdir -p /run/php
 touch /run/php/php7.3-fpm.pid
 /usr/sbin/php-fpm7.3
 
+cd /tmp
+
+mv wp-config.php /var/www/html
 
 bash

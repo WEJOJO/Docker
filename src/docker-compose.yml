@@ -8,6 +8,14 @@ volumes:
       type: none
       o: bind
       device: ${PWD}/wordpress_data
+  mydb:
+    driver: local
+    name: mydb
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/mysql_data
+
 
 services:
   webserve:
@@ -35,19 +43,21 @@ services:
     depends_on:
       - db
     environment:
-      - WORDPRESS_DB_HOST= "db:3306"
-      - WORDPRESS_DB_USER= "wordpress"
-      - WORDPRESS_DB_PASSWORD= "wordpress"
-      - WORDPRESS_DB_NAME= "wordpress"
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
     restart: always
   db:
     image: mariadb
     tty: yes
     container_name: my_db
     environment:
-      - MYSQL_ROOT_PASSWORD= "somewordpress"
-      - MYSQL_DATABASE= "wordpress"
-      - MYSQL_USER= "wordpress"
-      - MYSQL_PASSWORD= "wordpress"
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
     restart: always
+    volumes:
+      - mydb:/var/lib/mysql
 

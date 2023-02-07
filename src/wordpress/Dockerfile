@@ -10,6 +10,7 @@ RUN	apt-get -y update && \
 #CMD	["apache2-foreground"]
 
 COPY	./script /tmp
+COPY	./wp_conf /tmp
 
 EXPOSE	"9000"
 
