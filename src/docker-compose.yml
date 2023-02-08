@@ -3,14 +3,12 @@ version: "3"
 volumes:
   my_wp:
     driver: local
-    name: my_wp
     driver_opts:
       type: none
       o: bind
       device: ${PWD}/wordpress_data
   mydb:
     driver: local
-    name: mydb
     driver_opts:
       type: none
       o: bind
