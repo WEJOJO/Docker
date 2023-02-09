@@ -21,8 +21,8 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 php wp-cli.phar --info
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
-wp core install --url=54.180.5.25 --title=nhwangtest --admin_user=supervisor --admin_password=testpassword --admin_email=hni1124@naver.com --allow-root
+wp core install --url=54.180.5.25 --title=nhwangtest --admin_user=${WORDPRESS_ADMIN_USER} --admin_password=${WORDPRESS_ADMIN_PASSWORD} --admin_email=hni1124@naver.com --allow-root
 
-wp user create nhwang skadlr650@gmail.com --user_pass=mypassword --allow-root
+wp user create ${WORDPRESS_USER} skadlr650@gmail.com --user_pass=${WORDPRESS_USER_PASS} --allow-root
 
 bash
