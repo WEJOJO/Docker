@@ -44,7 +44,10 @@ services:
       - .env
     restart: always
   db:
-    image: mariadb
+    #image: mariadb
+    build:
+      context: ./mariadb
+      dockerfile: Dockerfile
     tty: yes
     container_name: my_db
     env_file:
