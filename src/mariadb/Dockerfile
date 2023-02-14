@@ -13,9 +13,12 @@ RUN	apt-get update -y && \
 #	cd /usr/sbin && \
 #	mysqld
 
+## origin..
+#ENTRYPOINT	["/tmp/script.sh"]
+#CMD	["mysqld"]
 ##
-ENTRYPOINT	["/tmp/script.sh"]
-##
-CMD	["mysqld"]
+
+#ENTRYPOINT	["mysqld"]
+CMD	["/tmp/script.sh", "mysqld"]
 
 
