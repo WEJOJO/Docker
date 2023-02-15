@@ -3,7 +3,7 @@ FROM	debian:buster
 LABEL	maintainer="nhwang"
 
 RUN	apt-get -y update && \
-	apt-get install -y php7.3 php-fpm php-cli wget php-mysql php-mbstring php-xml vim
+	apt-get install -y php7.3 php-fpm php-cli mariadb-client wget php-mysql php-mbstring php-xml vim
 #	wget http://wordpress.org/latest.tar.gz && \
 #	tar -xzvf latest.tar.gz
 
