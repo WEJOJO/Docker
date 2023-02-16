@@ -16,6 +16,7 @@ volumes:
 
 services:
   webserve:
+    image: webserve
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -29,6 +30,7 @@ services:
     depends_on :
       - word
   word:
+    image: word
     build:
       context: ./wordpress
       dockerfile: Dockerfile
@@ -43,6 +45,7 @@ services:
       - .env
     restart: always
   db:
+    image: db
     #image: mariadb
     build:
       context: ./mariadb
