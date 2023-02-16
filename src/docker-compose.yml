@@ -1,5 +1,9 @@
 version: "3"
 
+networks:
+  my_net:
+    name: my_net
+
 volumes:
   my_wp:
     driver: local
@@ -20,6 +24,8 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
+    networks:
+      - my_net
     tty: yes
     ports:
       - "443:443"
@@ -28,9 +34,12 @@ services:
       - my_wp:/var/www/html
     container_name: my_nginx
     depends_on :
-      - word
+      word:
+        condition: service_started
   word:
     image: word
+    networks:
+      - my_net
     build:
       context: ./wordpress
       dockerfile: Dockerfile
@@ -40,12 +49,15 @@ services:
       - my_wp:/var/www/html
       - ./wordpress/d_conf:/etc/php/7.3/fpm/pool.d
     depends_on:
-      - db
+      db:
+        condition: service_started
     env_file:
       - .env
     restart: always
   db:
     image: db
+    networks:
+      - my_net
     #image: mariadb
     build:
       context: ./mariadb
