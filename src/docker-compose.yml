@@ -30,7 +30,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./nginx/test_ingd:/etc/nginx/sites-available
+      - ./nginx/default_file:/etc/nginx/sites-available
       - my_wp:/var/www/html
     container_name: my_nginx
     depends_on :
