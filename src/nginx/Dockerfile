@@ -8,7 +8,5 @@ LABEL	maintainer="nhwang"
 
 COPY	./script /tmp
 
-ENTRYPOINT	["bash"]
-
 CMD	["/tmp/script.sh", "nginx", "-g", "daemon off;"]
 
