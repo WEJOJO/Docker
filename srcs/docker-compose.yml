@@ -10,19 +10,19 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/wordpress_data
+      device: ~/Inception/srcs/requirements/wordpress/wordpress_data
   mydb:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/mysql_data
+      device: ~/Inception/srcs/requirements/mariadb/mysql_data
 
 services:
   webserve:
     image: webserve
     build:
-      context: ./nginx
+      context: ./requirements/nginx
       dockerfile: Dockerfile
     networks:
       - my_net
@@ -30,7 +30,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./nginx/default_file:/etc/nginx/sites-available
+      - ./requirements/nginx/default_file:/etc/nginx/sites-available
       - my_wp:/var/www/html
     container_name: my_nginx
     depends_on :
@@ -41,13 +41,13 @@ services:
     networks:
       - my_net
     build:
-      context: ./wordpress
+      context: ./requirements/wordpress
       dockerfile: Dockerfile
     tty: yes
     container_name: my_word_press
     volumes:
       - my_wp:/var/www/html
-      - ./wordpress/d_conf:/etc/php/7.3/fpm/pool.d
+      - ./requirements/wordpress/d_conf:/etc/php/7.3/fpm/pool.d
     depends_on:
       db:
         condition: service_started
@@ -60,7 +60,7 @@ services:
       - my_net
     #image: mariadb
     build:
-      context: ./mariadb
+      context: ./requirements/mariadb
       dockerfile: Dockerfile
     tty: yes
     container_name: my_db
@@ -69,5 +69,5 @@ services:
     restart: always
     volumes:
       - mydb:/var/lib/mysql
-      - ./mariadb/conf_file/50-server.cnf:/etc/mysql/mariadb.conf.d/50-server.cnf
+      - ./requirements/mariadb/conf_file/50-server.cnf:/etc/mysql/mariadb.conf.d/50-server.cnf
 
