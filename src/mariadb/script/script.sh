@@ -1,8 +1,6 @@
 #!/bin/bash
 
 service mysql start
-#cd /usr/sbin/
-#mysqld
 
 mysql << EOSQL
 	SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${MYSQL_ROOT_PASSWORD}');
@@ -11,12 +9,6 @@ mysql << EOSQL
         GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';
         FLUSH PRIVILEGES;
 EOSQL
-
-#mysql -uroot <<- EOSQL
-#	CREATE DATABASE ${WORDPRESS_DB_NAME};
-#	CREATE USER '${WORDPRESS_DB_USER}'@'%' IDENTIFIED BY '${WORDPRESS_DB_PASSWORD}';
-#	FLUSH PRIVILEGES;
-#EOSQL
 
 mysqladmin -uroot -p${MYSQL_ROOT_PASSWORD} shutdown
 
