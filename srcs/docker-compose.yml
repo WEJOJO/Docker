@@ -10,13 +10,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/requirements/wordpress/wordpress_data
+      device: /home/nhwang/data/wordpress_data
   mydb:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/requirements/mariadb/mysql_data
+      device: /home/nhwang/data/mysql_data
 
 services:
   webserve:
@@ -58,7 +58,6 @@ services:
     image: db
     networks:
       - my_net
-    #image: mariadb
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
