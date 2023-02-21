@@ -10,13 +10,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ~/Inception/srcs/requirements/wordpress/wordpress_data
+      device: ${PWD}/requirements/wordpress/wordpress_data
   mydb:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ~/Inception/srcs/requirements/mariadb/mysql_data
+      device: ${PWD}/requirements/mariadb/mysql_data
 
 services:
   webserve:
