@@ -1,5 +1,3 @@
-# Docker
-
 # 요구 사항
 <img width="540" alt="요구사항" src="https://github.com/WEJOJO/Docker/assets/46590247/2bc72a12-9ef6-4bba-9aa8-2a531c96c1d8">
 
@@ -12,4 +10,13 @@
 
 ## 동작
 
+### Wordpress (WP)
 ![Docker1](https://github.com/WEJOJO/Docker/assets/46590247/252ad4cb-82cf-41d2-b46b-5f043667b41a)
+
+### WP - Make msg
+![test_msg](https://github.com/WEJOJO/Docker/assets/46590247/8ecd098c-7ded-4f65-9dc3-5e92350341c6)
+
+### WP - Admin Login
+![admin_login](https://github.com/WEJOJO/Docker/assets/46590247/0688a42a-f510-4f83-90c1-fb3d0a763584)
+
+### DataBase (MariaDB)
