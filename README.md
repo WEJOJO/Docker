@@ -1,8 +1,8 @@
 # 요구 사항
 <img width="540" alt="요구사항" src="https://github.com/WEJOJO/Docker/assets/46590247/2bc72a12-9ef6-4bba-9aa8-2a531c96c1d8">
 
-- nginx / wordpress / mariadb의 **공식 이미지를 Dockerfile의 base로 사용 금지(직접 작성할 것)**
-- 각 **컨테이너는 별도**로 존재해야 함.
+- 각 nginx / wordpress / mariadb **컨테이너는 별도**로 존재해야 함.
+- **공식 이미지를 Dockerfile의 base로 사용 금지(직접 작성할 것)**
 - 빌드 시점에 모든 세팅이 완료.
 - https 방식을 사용.
 - ENV에 비밀번호를 노출하는 방식 금지.
